@@ -1,10 +1,10 @@
 import { AppShell } from "@/components/app-shell"
-import { Dashboard } from "@/components/dashboard"
+import { Orders } from "@/components/orders"
 
 export default function Page() {
   return (
     <AppShell>
-      <Dashboard />
+      <Orders />
     </AppShell>
   )
 }

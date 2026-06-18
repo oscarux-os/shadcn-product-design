@@ -1,10 +1,10 @@
 import { AppShell } from "@/components/app-shell"
-import { Dashboard } from "@/components/dashboard"
+import { ShowcaseIndex } from "@/components/showcase/showcase-index"
 
 export default function Page() {
   return (
     <AppShell>
-      <Dashboard />
+      <ShowcaseIndex />
     </AppShell>
   )
 }

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import { IconContext } from "@phosphor-icons/react"
 
 function ThemeProvider({
   children,
@@ -15,8 +16,11 @@ function ThemeProvider({
       disableTransitionOnChange
       {...props}
     >
-      <ThemeHotkey />
-      {children}
+      {/* every Phosphor icon defaults to a thin ~1px stroke */}
+      <IconContext.Provider value={{ weight: "light" }}>
+        <ThemeHotkey />
+        {children}
+      </IconContext.Provider>
     </NextThemesProvider>
   )
 }
