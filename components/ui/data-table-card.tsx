@@ -5,10 +5,13 @@ import { Card } from "@/components/ui/card"
 
 /**
  * A card that frames a data table: an optional header (title + description +
- * actions) and an inset table region (px-6) so the table's borders breathe.
+ * actions) and an inset table region (px-3) so the borders stay off the card
+ * edges while the row hover/selection background keeps breathing room around
+ * the content instead of hugging it.
  *
- * Pass a <Table className="border-t"> as children, and give the first/last
- * columns `pl-0` / `pr-0` so the row hairlines align to the card padding.
+ * Pass a <Table className="border-t"> as children and let the columns keep
+ * their default cell padding — the content then lines up with the header
+ * (12px container + 12px cell = 24px) and the hover sits inside the borders.
  */
 function DataTableCard({
   title,
@@ -36,7 +39,7 @@ function DataTableCard({
           {actions && <div className="flex shrink-0 gap-2">{actions}</div>}
         </div>
       )}
-      <div className="px-6 pb-2">{children}</div>
+      <div className="px-3 pb-2">{children}</div>
     </Card>
   )
 }

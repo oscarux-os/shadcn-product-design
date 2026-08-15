@@ -96,19 +96,19 @@ export function Orders() {
 				<Table className="border-t">
 					<TableHeader>
 						<TableRow>
-							<TableHead className="pl-0">Order</TableHead>
+							<TableHead>Order</TableHead>
 							<TableHead>Customer</TableHead>
 							<TableHead>Status</TableHead>
 							<TableHead className="text-right">Items</TableHead>
 							<TableHead className="text-right">Total</TableHead>
 							<TableHead>Date</TableHead>
-							<TableHead className="w-0 pr-0" />
+							<TableHead className="w-0" />
 						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{orders.map((o) => (
 							<TableRow className="h-14" key={o.id}>
-								<TableCell className="pl-0 font-medium tabular-nums">{o.id}</TableCell>
+								<TableCell className="font-medium tabular-nums">{o.id}</TableCell>
 								<TableCell>
 									<div className="flex items-center gap-3">
 										<Avatar className="size-6 after:hidden">
@@ -128,7 +128,7 @@ export function Orders() {
 								<TableCell className="text-right tabular-nums">{o.items}</TableCell>
 								<TableCell className="text-right tabular-nums">{money(o.total)}</TableCell>
 								<TableCell className="text-muted-foreground">{o.date}</TableCell>
-								<TableCell className="pr-0 text-right">
+								<TableCell className="text-right">
 									<Button aria-label="More" size="icon-sm" variant="ghost">
 										<DotsThreeVerticalIcon />
 									</Button>

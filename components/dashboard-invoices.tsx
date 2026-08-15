@@ -56,23 +56,23 @@ export function DashboardInvoices() {
 				<CardTitle>Recent invoices</CardTitle>
 				<CardDescription>Open amounts and payment status.</CardDescription>
 			</CardHeader>
-			<CardContent className="px-6 pb-2">
+			<CardContent className="px-3 pb-2">
 				<Table className="border-t">
 					<TableCaption className="sr-only">
 						Recent invoices with customer, amount, and status.
 					</TableCaption>
 					<TableHeader>
 						<TableRow>
-							<TableHead className="pl-0">Customer</TableHead>
+							<TableHead>Customer</TableHead>
 							<TableHead>Invoice</TableHead>
 							<TableHead className="text-right tabular-nums">Amount</TableHead>
-							<TableHead className="pr-0 text-right">Status</TableHead>
+							<TableHead className="text-right">Status</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{invoices.map((inv) => (
 							<TableRow className="h-14" key={inv.id}>
-								<TableCell className="max-w-40 truncate pl-0 font-medium">
+								<TableCell className="max-w-40 truncate font-medium">
 									{inv.customer}
 								</TableCell>
 								<TableCell className="text-muted-foreground tabular-nums">
@@ -81,7 +81,7 @@ export function DashboardInvoices() {
 								<TableCell className="text-right tabular-nums">
 									{inv.amount}
 								</TableCell>
-								<TableCell className="pr-0 text-right">
+								<TableCell className="text-right">
 									<Badge variant={inv.variant}>{inv.status}</Badge>
 								</TableCell>
 							</TableRow>

@@ -295,7 +295,7 @@ export const showcase: ShowcaseEntry[] = [
 		slug: "data-table-card",
 		name: "DataTableCard",
 		tag: "custom",
-		description: "Frames a table with an optional header and an inset table region so borders breathe.",
+		description: "Frames a table with an optional header and an inset table region so borders stay off the edges and the hover keeps breathing room.",
 		preview: (
 			<DataTableCard title="Orders" description="Recent activity" className="w-full">
 				<MiniTable />
@@ -498,19 +498,19 @@ function MiniTable() {
 		<Table className="border-t">
 			<TableHeader>
 				<TableRow>
-					<TableHead className="pl-0">Order</TableHead>
+					<TableHead>Order</TableHead>
 					<TableHead>Customer</TableHead>
 					<TableHead className="text-right">Total</TableHead>
-					<TableHead className="pr-0 text-right">Status</TableHead>
+					<TableHead className="text-right">Status</TableHead>
 				</TableRow>
 			</TableHeader>
 			<TableBody>
 				{rows.map((r) => (
 					<TableRow key={r.id} className="h-12">
-						<TableCell className="pl-0 font-medium tabular-nums">{r.id}</TableCell>
+						<TableCell className="font-medium tabular-nums">{r.id}</TableCell>
 						<TableCell>{r.name}</TableCell>
 						<TableCell className="text-right tabular-nums">{r.total}</TableCell>
-						<TableCell className="pr-0 text-right">
+						<TableCell className="text-right">
 							<Badge variant={variant[r.status]}>{r.status}</Badge>
 						</TableCell>
 					</TableRow>
