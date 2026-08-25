@@ -1,7 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { PackageIcon, TruckIcon, ReceiptIcon } from "@phosphor-icons/react"
+import {
+  PackageIcon,
+  TruckIcon,
+  ReceiptIcon,
+  WarningCircleIcon,
+  InfoIcon,
+} from "@phosphor-icons/react"
 
 import type { ShowcaseSlug } from "@/components/showcase/slugs"
 import { Button } from "@/components/ui/button"
@@ -21,6 +27,17 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination"
 import {
   Item,
   ItemActions,
@@ -549,6 +566,166 @@ export const showcase: ShowcaseEntry[] = [
       },
     ],
   },
+  {
+    slug: "checkbox",
+    name: "Checkbox",
+    tag: "shadcn",
+    description:
+      "Row and bulk selection. Used for select-all and per-row marks in dense tables.",
+    preview: (
+      <div className="flex items-center gap-4">
+        <Checkbox defaultChecked />
+        <Checkbox />
+        <Checkbox disabled />
+      </div>
+    ),
+    examples: [
+      {
+        title: "States",
+        node: (
+          <div className="flex items-center gap-6">
+            <label className="flex items-center gap-2 text-body">
+              <Checkbox id="cb-unchecked" />
+              Unchecked
+            </label>
+            <label className="flex items-center gap-2 text-body">
+              <Checkbox id="cb-checked" defaultChecked />
+              Checked
+            </label>
+            <label className="flex items-center gap-2 text-body text-muted-foreground">
+              <Checkbox id="cb-disabled" disabled />
+              Disabled
+            </label>
+          </div>
+        ),
+      },
+      {
+        title: "Row selection",
+        node: (
+          <Table className="border-t">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-8">
+                  <Checkbox aria-label="Select all" />
+                </TableHead>
+                <TableHead>Order</TableHead>
+                <TableHead className="text-right">Total</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {["#3102", "#3100"].map((id) => (
+                <TableRow key={id} className="h-12">
+                  <TableCell>
+                    <Checkbox aria-label={`Select ${id}`} />
+                  </TableCell>
+                  <TableCell className="font-medium tabular-nums">
+                    {id}
+                  </TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    $1,290.00
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ),
+      },
+    ],
+  },
+  {
+    slug: "alert",
+    name: "Alert",
+    tag: "shadcn",
+    description:
+      "Persistent, dismissible action outcome. Landed at the top of the content area — never a toast as the only trace of a job.",
+    preview: (
+      <Alert className="max-w-sm">
+        <InfoIcon />
+        <AlertTitle>Export finished</AlertTitle>
+        <AlertDescription>1,284 rows written to orders.csv.</AlertDescription>
+      </Alert>
+    ),
+    examples: [
+      {
+        title: "Default",
+        node: (
+          <Alert className="max-w-md">
+            <InfoIcon />
+            <AlertTitle>Export finished</AlertTitle>
+            <AlertDescription>
+              1,284 rows written to orders.csv.
+            </AlertDescription>
+          </Alert>
+        ),
+      },
+      {
+        title: "Destructive",
+        node: (
+          <Alert variant="destructive" className="max-w-md">
+            <WarningCircleIcon />
+            <AlertTitle>Import failed</AlertTitle>
+            <AlertDescription>
+              14 rows had an invalid status value.
+            </AlertDescription>
+          </Alert>
+        ),
+      },
+    ],
+  },
+  {
+    slug: "pagination",
+    name: "Pagination",
+    tag: "shadcn",
+    description:
+      "Server-side, numbered page nav. Shown even when everything fits, so the layout doesn't jump.",
+    preview: (
+      <Pagination className="w-auto">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              1
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    examples: [
+      {
+        title: "Full",
+        node: (
+          <Pagination className="w-auto">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              {[1, 2, 3].map((n) => (
+                <PaginationItem key={n}>
+                  <PaginationLink href="#" isActive={n === 1}>
+                    {n}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">26</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        ),
+      },
+    ],
+  },
 ]
 
 export function getShowcaseEntry(slug: string) {
@@ -569,6 +746,9 @@ export const usedIn: Record<ShowcaseSlug, string[]> = {
   item: ["Overview"],
   card: ["DataTableCard", "Kpi", "Components"],
   separator: ["BentoPanel", "Item"],
+  checkbox: [],
+  alert: [],
+  pagination: [],
 }
 
 const pageRoutes: Record<string, string> = {

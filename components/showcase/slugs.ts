@@ -12,6 +12,9 @@ export const showcaseSlugs = [
   "item",
   "card",
   "separator",
+  "checkbox",
+  "alert",
+  "pagination",
 ] as const
 
 export type ShowcaseSlug = (typeof showcaseSlugs)[number]

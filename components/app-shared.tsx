@@ -10,7 +10,7 @@ import {
   GearIcon,
   QuestionIcon,
   PulseIcon,
-  StackIcon,
+  BookOpenTextIcon,
 } from "@phosphor-icons/react"
 
 export type SidebarNavItem = {
@@ -46,9 +46,70 @@ export const navGroups: SidebarNavGroup[] = [
         icon: <ChartBarIcon />,
       },
       {
-        title: "Components",
-        path: "/components",
-        icon: <StackIcon />,
+        title: "Design system",
+        path: "#/design-system",
+        icon: <BookOpenTextIcon />,
+        subItems: [
+          {
+            title: "Foundations",
+            path: "#/design-system/foundations",
+            subItems: [
+              { title: "Overview", path: "/design-system/foundations" },
+              {
+                title: "Colour",
+                path: "/design-system/foundations/colour",
+              },
+              {
+                title: "Typography",
+                path: "/design-system/foundations/typography",
+              },
+              {
+                title: "Layout & spacing",
+                path: "/design-system/foundations/layout-spacing",
+              },
+              {
+                title: "Depth & shape",
+                path: "/design-system/foundations/depth-shape",
+              },
+              {
+                title: "Motion & interaction",
+                path: "/design-system/foundations/motion-interaction",
+              },
+              {
+                title: "Controls & density",
+                path: "/design-system/foundations/controls-density",
+              },
+              {
+                title: "Charts & components",
+                path: "/design-system/foundations/charts-components",
+              },
+            ],
+          },
+          { title: "Components", path: "/components" },
+          {
+            title: "Sidotyper",
+            path: "#/design-system/page-types",
+            subItems: [
+              {
+                title: "Index / List Report",
+                path: "/page-types/list-report",
+              },
+              { title: "Details", path: "/page-types/details" },
+              { title: "Worklist", path: "/page-types/worklist" },
+              {
+                title: "Worklist detail",
+                path: "/page-types/worklist-detail",
+              },
+              { title: "Create a new page", path: "/page-types/create" },
+              { title: "Wizard", path: "/page-types/wizard" },
+              { title: "Overview", path: "/page-types/overview" },
+              { title: "Analytical", path: "/page-types/analytical" },
+              { title: "Settings", path: "/page-types/settings" },
+              { title: "Result", path: "/page-types/result" },
+              { title: "404", path: "/page-types/404" },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -119,11 +180,14 @@ export const footerNavLinks: SidebarNavItem[] = [
   },
 ]
 
+function flattenNavItems(items: SidebarNavItem[]): SidebarNavItem[] {
+  return items.flatMap((item) => [
+    item,
+    ...flattenNavItems(item.subItems ?? []),
+  ])
+}
+
 export const navLinks: SidebarNavItem[] = [
-  ...navGroups.flatMap((group) =>
-    group.items.flatMap((item) =>
-      item.subItems?.length ? [item, ...item.subItems] : [item]
-    )
-  ),
+  ...navGroups.flatMap((group) => flattenNavItems(group.items)),
   ...footerNavLinks,
 ]

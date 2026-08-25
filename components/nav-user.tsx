@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,9 +21,8 @@ import {
 } from "@phosphor-icons/react"
 
 const user = {
-  name: "Shaban Haider",
-  email: "shaban@efferd.com",
-  avatar: "https://github.com/shabanhr.png",
+  name: "Alex Morgan",
+  email: "alex@example.com",
 }
 
 export function NavUser() {
@@ -31,7 +30,6 @@ export function NavUser() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="size-8">
-          <AvatarImage src={user.avatar} />
           <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -39,7 +37,6 @@ export function NavUser() {
         <DropdownMenuItem className="flex items-center justify-start gap-2">
           <DropdownMenuLabel className="flex items-center gap-3">
             <Avatar className="size-10">
-              <AvatarImage src={user.avatar} />
               <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>

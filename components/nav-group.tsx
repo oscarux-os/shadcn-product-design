@@ -16,12 +16,70 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import type { SidebarNavGroup } from "@/components/app-shared"
+import type { SidebarNavGroup, SidebarNavItem } from "@/components/app-shared"
 import { CaretRightIcon } from "@phosphor-icons/react"
+
+type IsActivePath = (path?: string) => boolean
+
+function hasActiveDescendant(
+  item: SidebarNavItem,
+  isActivePath: IsActivePath
+): boolean {
+  if (isActivePath(item.path)) return true
+  return !!item.subItems?.some((child) =>
+    hasActiveDescendant(child, isActivePath)
+  )
+}
+
+/** Renders a level of SidebarMenuSub — recurses for subItems nested another level deep. */
+function NavSubTree({
+  items,
+  isActivePath,
+}: {
+  items: SidebarNavItem[]
+  isActivePath: IsActivePath
+}) {
+  return (
+    <SidebarMenuSub>
+      {items.map((item) =>
+        item.subItems?.length ? (
+          <Collapsible
+            asChild
+            className="group/subcollapsible"
+            defaultOpen={hasActiveDescendant(item, isActivePath)}
+            key={item.title}
+          >
+            <SidebarMenuSubItem>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuSubButton isActive={isActivePath(item.path)}>
+                  {item.icon}
+                  <span>{item.title}</span>
+                  <CaretRightIcon className="ml-auto transition-transform duration-base group-data-[state=open]/subcollapsible:rotate-90" />
+                </SidebarMenuSubButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <NavSubTree items={item.subItems} isActivePath={isActivePath} />
+              </CollapsibleContent>
+            </SidebarMenuSubItem>
+          </Collapsible>
+        ) : (
+          <SidebarMenuSubItem key={item.title}>
+            <SidebarMenuSubButton asChild isActive={isActivePath(item.path)}>
+              <a href={item.path}>
+                {item.icon}
+                <span>{item.title}</span>
+              </a>
+            </SidebarMenuSubButton>
+          </SidebarMenuSubItem>
+        )
+      )}
+    </SidebarMenuSub>
+  )
+}
 
 export function NavGroup({ label, items }: SidebarNavGroup) {
   const pathname = usePathname()
-  const isActivePath = (path?: string) =>
+  const isActivePath: IsActivePath = (path) =>
     !!path && path.startsWith("/") && path === pathname
 
   return (
@@ -30,7 +88,7 @@ export function NavGroup({ label, items }: SidebarNavGroup) {
       <SidebarMenu>
         {items.map((item) => {
           const active = isActivePath(item.path)
-          const childActive = item.subItems?.some((i) => isActivePath(i.path))
+          const childActive = hasActiveDescendant(item, isActivePath)
           return (
             <Collapsible
               asChild
@@ -49,21 +107,10 @@ export function NavGroup({ label, items }: SidebarNavGroup) {
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.subItems?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={isActivePath(subItem.path)}
-                            >
-                              <a href={subItem.path}>
-                                {subItem.icon}
-                                <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
+                      <NavSubTree
+                        items={item.subItems}
+                        isActivePath={isActivePath}
+                      />
                     </CollapsibleContent>
                   </>
                 ) : (
