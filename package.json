@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "gen:tokens": "node --experimental-strip-types scripts/generate-tokens.ts",
+    "gen:tokens:check": "node --experimental-strip-types scripts/generate-tokens.ts --check",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

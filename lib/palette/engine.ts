@@ -2,8 +2,11 @@
  * OKLCH palette engine — "a grammar, not a dictionary".
  *
  * The ENTIRE token set is DERIVED from three inputs: a neutral seed (hue +
- * base chroma), an accent hue, and a contrast value. Light and dark both fall
- * out of the same math — you don't look a value up, you derive it.
+ * base chroma), an accent hue, and a contrast value. Those inputs are NOT
+ * declared here — they live in DESIGN.md's `palette` block, which
+ * scripts/generate-tokens.ts reads. This file is the grammar, not the values.
+ * Light and dark both fall out of the same math — you don't look a value up,
+ * you derive it.
  *
  * The maths (per the Lovable writeup):
  *  - Lightness across a ramp is a QUADRATIC in the ramp position.
@@ -27,13 +30,6 @@ export type PaletteConfig = {
   accentHue: number
   /** 0..1, 0.5 = default. Higher = more separation between fg and surfaces. */
   contrast: number
-}
-
-export const DEFAULT_CONFIG: PaletteConfig = {
-  neutralHue: 85,
-  neutralChroma: 0.0015,
-  accentHue: 255,
-  contrast: 0.5,
 }
 
 type LC = { L: number; C: number }
@@ -241,7 +237,7 @@ function buildTheme(cfg: PaletteConfig, mode: "light" | "dark"): Tokens {
   return t
 }
 
-export function generateThemes(cfg: PaletteConfig = DEFAULT_CONFIG) {
+export function generateThemes(cfg: PaletteConfig) {
   return { light: buildTheme(cfg, "light"), dark: buildTheme(cfg, "dark") }
 }
 
@@ -251,7 +247,7 @@ function block(selector: string, tokens: Tokens): string {
 }
 
 /** Render the full :root + .dark CSS for a config. */
-export function toCss(cfg: PaletteConfig = DEFAULT_CONFIG): string {
+export function toCss(cfg: PaletteConfig): string {
   const { light, dark } = generateThemes(cfg)
   return [
     "/* ----------------------------------------------------------------------",
