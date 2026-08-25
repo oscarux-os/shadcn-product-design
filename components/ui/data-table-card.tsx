@@ -31,7 +31,7 @@ function DataTableCard({
       {(title || actions) && (
         <div className="flex items-center justify-between gap-4 px-6 py-5">
           <div className="min-w-0">
-            {title && <h2 className="font-medium text-base">{title}</h2>}
+            {title && <h2 className="text-base font-medium">{title}</h2>}
             {description && (
               <p className="text-sm text-muted-foreground">{description}</p>
             )}

@@ -17,7 +17,11 @@ import { readFileSync, writeFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join, relative } from "node:path"
 
-import { toCss, generateThemes, type PaletteConfig } from "../lib/palette/engine.ts"
+import {
+  toCss,
+  generateThemes,
+  type PaletteConfig,
+} from "../lib/palette/engine.ts"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, "..")
@@ -40,7 +44,9 @@ const PALETTE_KEYS = [
 function readPaletteConfig(source: string): PaletteConfig {
   const block = source.match(/^palette:\s*$\n((?:^[ \t]+.*$\n?)+)/m)
   if (!block) {
-    throw new Error(`${rel(designPath)}: no \`palette:\` block found in the front matter`)
+    throw new Error(
+      `${rel(designPath)}: no \`palette:\` block found in the front matter`
+    )
   }
   const cfg = {} as Record<string, number>
   for (const key of PALETTE_KEYS) {
@@ -50,7 +56,9 @@ function readPaletteConfig(source: string): PaletteConfig {
     }
     const value = Number(hit[1])
     if (!Number.isFinite(value)) {
-      throw new Error(`${rel(designPath)}: \`palette.${key}\` is not a number: ${hit[1]}`)
+      throw new Error(
+        `${rel(designPath)}: \`palette.${key}\` is not a number: ${hit[1]}`
+      )
     }
     cfg[key] = value
   }
@@ -111,11 +119,17 @@ const nextDesign = replaceMirror(design, renderMirror(cfg))
 
 const outputs: { path: string; next: string; drift: string }[] = [
   { path: cssPath, next: nextCss, drift: "does not match DESIGN.md's palette" },
-  { path: designPath, next: nextDesign, drift: "GENERATED colour block is stale" },
+  {
+    path: designPath,
+    next: nextDesign,
+    drift: "GENERATED colour block is stale",
+  },
 ]
 
 if (check) {
-  const drifted = outputs.filter(({ path, next }) => readFileSync(path, "utf8") !== next)
+  const drifted = outputs.filter(
+    ({ path, next }) => readFileSync(path, "utf8") !== next
+  )
   if (drifted.length) {
     for (const { path, drift } of drifted) {
       console.error(`✗ ${rel(path)}: ${drift}`)

@@ -24,7 +24,7 @@ function Kpi({
   return (
     <div className={cn("flex-1 px-5 py-4", className)}>
       <div className="flex items-center justify-between gap-2">
-        <span className="font-normal text-muted-foreground text-xs tracking-wide">
+        <span className="text-xs font-normal tracking-wide text-muted-foreground">
           {label}
         </span>
         {typeof delta === "number" ? (
@@ -34,7 +34,7 @@ function Kpi({
           </Delta>
         ) : null}
       </div>
-      <p className="mt-1 font-medium text-xl tabular-nums">{value}</p>
+      <p className="mt-1 text-xl font-medium tabular-nums">{value}</p>
       {children}
     </div>
   )

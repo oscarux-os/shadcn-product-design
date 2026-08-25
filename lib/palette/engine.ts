@@ -35,7 +35,8 @@ export type PaletteConfig = {
 type LC = { L: number; C: number }
 type Tokens = Record<string, string>
 
-const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x))
+const clamp = (x: number, lo: number, hi: number) =>
+  Math.min(hi, Math.max(lo, x))
 const round = (x: number, n = 4) => {
   const p = 10 ** n
   return Math.round(x * p) / p
@@ -145,7 +146,9 @@ function buildIntents(cfg: PaletteConfig, mode: "light" | "dark", t: Tokens) {
       t[name] = fmt(fill.L, fill.C, hue)
       // label colour DERIVED from fill lightness: dark fill → white label
       t[`${name}-foreground`] =
-        fill.L < 0.6 ? fmt(1, 0, 0) : fmt(0.16, Math.min(0.03, fill.C * 0.15), hue)
+        fill.L < 0.6
+          ? fmt(1, 0, 0)
+          : fmt(0.16, Math.min(0.03, fill.C * 0.15), hue)
       t[`${name}-soft`] = fmt(soft.L, soft.C, hue)
       t[`${name}-soft-foreground`] = fmt(softFg.L, softFg.C, hue)
     } else {
@@ -154,7 +157,9 @@ function buildIntents(cfg: PaletteConfig, mode: "light" | "dark", t: Tokens) {
       const softFg = sample(hue, P.softFgDark)
       t[name] = fmt(fill.L, fill.C, hue)
       t[`${name}-foreground`] =
-        fill.L < 0.6 ? fmt(1, 0, 0) : fmt(0.16, Math.min(0.03, fill.C * 0.15), hue)
+        fill.L < 0.6
+          ? fmt(1, 0, 0)
+          : fmt(0.16, Math.min(0.03, fill.C * 0.15), hue)
       t[`${name}-soft`] = fmt(soft.L, soft.C * 0.6, hue)
       t[`${name}-soft-foreground`] = fmt(softFg.L, softFg.C, hue)
     }

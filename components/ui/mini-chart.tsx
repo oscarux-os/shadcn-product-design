@@ -29,7 +29,10 @@ function MiniChart({
   const config = { v: { label: "value", color } } satisfies ChartConfig
 
   return (
-    <ChartContainer config={config} className={cn("aspect-auto w-full", className)}>
+    <ChartContainer
+      config={config}
+      className={cn("aspect-auto w-full", className)}
+    >
       <AreaChart data={data} margin={{ left: 4, right: 12, top: 8 }}>
         <defs>
           <linearGradient id={`grad-${id}`} x1="0" x2="0" y1="0" y2="1">
@@ -37,7 +40,11 @@ function MiniChart({
             <stop offset="95%" stopColor={color} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid className="stroke-border" strokeDasharray="3 3" vertical={false} />
+        <CartesianGrid
+          className="stroke-border"
+          strokeDasharray="3 3"
+          vertical={false}
+        />
         <XAxis
           axisLine={false}
           dataKey="date"
