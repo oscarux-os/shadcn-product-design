@@ -306,65 +306,64 @@ export function ListReport() {
       </div>
 
       {/* 5. Aktiva filter — 6. Massåtgärdsfält (replaces this row when rows are selected) */}
-      <div className="flex h-9 items-center gap-2">
-        {selected.size > 0 ? (
-          <div className="flex w-full items-center justify-between gap-4 rounded-2xl bg-muted px-4 py-1.5">
-            <span className="text-label">{selected.size} selected</span>
-            <div className="flex items-center gap-2">
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => handleExport(selected.size)}
-              >
-                <DownloadSimpleIcon />
-                Export
-              </Button>
-              <Button
-                size="sm"
-                variant="destructive"
-                onClick={() => handleDelete(selected.size)}
-              >
-                <TrashIcon />
-                Delete
-              </Button>
-              <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
-                Clear
-              </Button>
-            </div>
-          </div>
-        ) : (
-          activeFilters.length > 0 && (
-            <>
-              <div className="flex flex-wrap items-center gap-1">
-                {activeFilters.map((f) => (
-                  <Badge key={f.key} variant="secondary" className="gap-1">
-                    {f.label}
-                    <button
-                      aria-label={`Remove ${f.label} filter`}
-                      onClick={f.clear}
-                      className="rounded-full"
-                    >
-                      <XIcon className="size-3" />
-                    </button>
-                  </Badge>
-                ))}
+      {(selected.size > 0 || activeFilters.length > 0) && (
+        <div className="flex h-9 items-center gap-2">
+          {selected.size > 0 ? (
+            <div className="flex w-full items-center justify-between gap-4 rounded-2xl bg-muted px-4 py-1.5">
+              <span className="text-label">{selected.size} selected</span>
+              <div className="flex items-center gap-2">
                 <Button
-                  size="xs"
+                  size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    setParams({ q: null, status: null, priority: null, page: null })
-                  }
+                  onClick={() => handleExport(selected.size)}
                 >
-                  Clear all
+                  <DownloadSimpleIcon />
+                  Export
+                </Button>
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => handleDelete(selected.size)}
+                >
+                  <TrashIcon />
+                  Delete
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setSelected(new Set())}
+                >
+                  Clear
                 </Button>
               </div>
-              <span className="ml-auto text-caption text-muted-foreground">
-                {filtered.length} of {tickets.length} tickets
-              </span>
-            </>
-          )
-        )}
-      </div>
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center gap-1">
+              {activeFilters.map((f) => (
+                <Badge key={f.key} variant="secondary" className="gap-1">
+                  {f.label}
+                  <button
+                    aria-label={`Remove ${f.label} filter`}
+                    onClick={f.clear}
+                    className="rounded-full"
+                  >
+                    <XIcon className="size-3" />
+                  </button>
+                </Badge>
+              ))}
+              <Button
+                size="xs"
+                variant="ghost"
+                onClick={() =>
+                  setParams({ q: null, status: null, priority: null, page: null })
+                }
+              >
+                Clear all
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* 7. Tabellen */}
       <DataTableCard>
@@ -448,9 +447,16 @@ export function ListReport() {
 
       {/* 8. Paginering */}
       <Pagination className="justify-between">
-        <span className="text-caption text-muted-foreground">
-          Page {currentPage} of {pageCount}
-        </span>
+        <div className="flex items-center gap-2 text-caption text-muted-foreground">
+          <span>
+            Page {currentPage} of {pageCount}
+          </span>
+          {activeFilters.length > 0 && (
+            <span>
+              {filtered.length} of {tickets.length} tickets
+            </span>
+          )}
+        </div>
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
