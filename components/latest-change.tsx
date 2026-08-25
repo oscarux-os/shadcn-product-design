@@ -27,16 +27,16 @@ export function LatestChange() {
         "transition-opacity group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:opacity-0"
       )}
     >
-      <span className="font-mono text-xs font-light text-muted-foreground">
+      <span className="font-mono text-code text-muted-foreground">
         {latestChange.badge}
       </span>
-      <p className="text-xs font-medium">{latestChange.title}</p>
-      <span className="text-xs text-muted-foreground">
+      <p className="text-label-sm">{latestChange.title}</p>
+      <span className="text-caption text-muted-foreground">
         {latestChange.description}
       </span>
       <Button
         asChild
-        className="w-max px-0 text-xs font-light"
+        className="w-max px-0 text-caption"
         size="sm"
         variant="link"
       >

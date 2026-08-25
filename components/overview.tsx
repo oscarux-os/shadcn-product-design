@@ -104,7 +104,7 @@ const money = (n: number) =>
 export function Overview() {
   return (
     <div className="flex flex-1 flex-col gap-6">
-      <h1 className="text-xl leading-tight font-medium">Good morning, Oscar</h1>
+      <h1 className="text-page-title">Good morning, Oscar</h1>
 
       <BentoPanel>
         <BentoRow>
@@ -136,7 +136,7 @@ export function Overview() {
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="font-heading text-base font-medium">
+            <h2 className="font-heading text-title">
               Active orders
             </h2>
             <Badge variant="secondary">{activeOrders.length}</Badge>

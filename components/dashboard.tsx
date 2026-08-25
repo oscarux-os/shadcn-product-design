@@ -6,7 +6,7 @@ import { BentoPanel } from "@/components/ui/bento"
 export function Dashboard() {
   return (
     <div className="flex flex-1 flex-col gap-6">
-      <h1 className="text-xl leading-tight font-medium">Dashboard</h1>
+      <h1 className="text-page-title">Dashboard</h1>
 
       <BentoPanel>
         <DashboardStats />

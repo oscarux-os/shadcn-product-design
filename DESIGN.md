@@ -127,7 +127,7 @@ tracking:
   normal: "-0.015em"
 
 # ---------------------------------------------------------------------------
-# TYPOGRAPHY — six roles, two weights, one family.
+# TYPOGRAPHY — eight roles, two weights, one family.
 #
 # The largest type in this product is a NUMBER. There is no display tier and no
 # hero: a dashboard's job is density and scannability, so emphasis comes from
@@ -135,7 +135,12 @@ tracking:
 # jumping three sizes. Anything above `metric` does not exist.
 # ---------------------------------------------------------------------------
 typography:
-  metric:              # the one large size — reserved for values, never for prose
+  page-title:          # the h1 of a view — same size as `metric`, tighter leading
+    fontFamily: Geist
+    fontSize: "1.25rem"
+    fontWeight: "500"
+    lineHeight: "1.5rem"
+  metric:              # the one large size for values — never for prose
     fontFamily: Geist
     fontSize: "1.25rem"    # text-xl
     fontWeight: "500"
@@ -156,7 +161,12 @@ typography:
     fontSize: "0.875rem"   # text-sm
     fontWeight: "500"
     lineHeight: "1.25rem"
-  caption:             # KPI labels, sidebar group labels, muted metadata
+  label-sm:            # dense chrome: badges, kbd, sidebar group labels
+    fontFamily: Geist
+    fontSize: "0.75rem"    # text-xs
+    fontWeight: "500"
+    lineHeight: "1rem"
+  caption:             # muted metadata, KPI labels, table meta
     fontFamily: Geist
     fontSize: "0.75rem"    # text-xs
     fontWeight: "400"
@@ -440,7 +450,7 @@ get an action's visual weight.
 
 ## Typography
 
-One family (Geist), two weights (400 / 500), six roles. There is no display
+One family (Geist), two weights (400 / 500), eight roles. There is no display
 tier, because **the largest type in this product is a number** — `metric` at
 1.25rem is the ceiling, and it is reserved for values.
 
@@ -448,6 +458,16 @@ Emphasis comes from weight and colour, never from a size jump:
 `foreground` + 500 is the strongest thing a label can be, `muted-foreground` +
 400 the quietest. If something still doesn't stand out, it belongs on a
 different surface — not in a bigger font.
+
+`page-title` and `metric` share 1.25rem/500 and differ only in leading — 1.5rem
+for a heading, 1.75rem for a figure sitting in a row of cells. Two roles with the
+same size is not duplication when the line-height is the decision; it is what
+stops every h1 from carrying a hand-set `leading-tight`.
+
+`label` and `label-sm` are a density ladder, not an emphasis ladder: `label`
+(0.875rem) is for content, `label-sm` (0.75rem) for dense chrome — badges, `kbd`,
+sidebar group labels — where the weight is what makes 12px read at all. It shares
+its size with `caption`; weight is the whole difference, which is the point.
 
 All figures carry `tabular-nums`. Numbers that change must not reflow, and
 numbers in a column must align — this applies to table cells, KPI values, deltas

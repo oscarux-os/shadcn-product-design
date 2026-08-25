@@ -45,7 +45,7 @@ export function NavGroup({ label, items }: SidebarNavGroup) {
                       <SidebarMenuButton isActive={active}>
                         {item.icon}
                         <span>{item.title}</span>
-                        <CaretRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        <CaretRightIcon className="ml-auto transition-transform duration-base group-data-[state=open]/collapsible:rotate-90" />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>

@@ -151,7 +151,7 @@ export const showcase: ShowcaseEntry[] = [
     description:
       "Up/down change indicator. Caret + percentage that turns green/red by sign.",
     preview: (
-      <div className="flex items-center gap-4 text-sm">
+      <div className="flex items-center gap-4 text-body">
         <Delta value={12.4}>
           <DeltaIcon />
           <DeltaValue />
@@ -211,7 +211,7 @@ export const showcase: ShowcaseEntry[] = [
           <AvatarFallback>AL</AvatarFallback>
         </Avatar>
         <Avatar className="size-6 after:hidden">
-          <AvatarFallback className="text-xs">YT</AvatarFallback>
+          <AvatarFallback className="text-caption">YT</AvatarFallback>
         </Avatar>
       </div>
     ),
@@ -221,7 +221,7 @@ export const showcase: ShowcaseEntry[] = [
         node: (
           <div className="flex items-center gap-3">
             <Avatar className="size-6 after:hidden">
-              <AvatarFallback className="text-xs">SM</AvatarFallback>
+              <AvatarFallback className="text-caption">SM</AvatarFallback>
             </Avatar>
             <Avatar className="after:hidden">
               <AvatarFallback>MD</AvatarFallback>
@@ -499,7 +499,7 @@ export const showcase: ShowcaseEntry[] = [
               <CardTitle>Smarter shipping</CardTitle>
               <CardDescription>Real-time rates at checkout.</CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="text-body text-muted-foreground">
               Cards rely on surface lightness and a soft shadow instead of a
               border.
             </CardContent>
@@ -516,9 +516,9 @@ export const showcase: ShowcaseEntry[] = [
       "Hairline divider. Inset variant respects component padding to leave room to breathe.",
     preview: (
       <div className="w-full rounded-2xl bg-card py-3 shadow-soft">
-        <p className="px-4 pb-2 text-sm">Section one</p>
+        <p className="px-4 pb-2 text-body">Section one</p>
         <Separator className="mx-4 data-horizontal:w-auto" />
-        <p className="px-4 pt-2 text-sm">Section two</p>
+        <p className="px-4 pt-2 text-body">Section two</p>
       </div>
     ),
     examples: [
@@ -527,20 +527,20 @@ export const showcase: ShowcaseEntry[] = [
         node: (
           <div className="space-y-6">
             <div className="rounded-2xl bg-card py-3 shadow-soft">
-              <p className="px-4 pb-2 text-sm text-muted-foreground">
+              <p className="px-4 pb-2 text-body text-muted-foreground">
                 Full-bleed
               </p>
               <Separator />
-              <p className="px-4 pt-2 text-sm text-muted-foreground">
+              <p className="px-4 pt-2 text-body text-muted-foreground">
                 Runs edge to edge
               </p>
             </div>
             <div className="rounded-2xl bg-card py-3 shadow-soft">
-              <p className="px-4 pb-2 text-sm text-muted-foreground">
+              <p className="px-4 pb-2 text-body text-muted-foreground">
                 Inset (mx-4)
               </p>
               <Separator className="mx-4 data-horizontal:w-auto" />
-              <p className="px-4 pt-2 text-sm text-muted-foreground">
+              <p className="px-4 pt-2 text-body text-muted-foreground">
                 Respects padding
               </p>
             </div>

@@ -136,15 +136,15 @@ export function SalesChart() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <CardTitle className="text-xs font-normal tracking-wide text-muted-foreground">
+              <CardTitle className="text-caption tracking-wide text-muted-foreground">
                 Sales
               </CardTitle>
-              <Delta value={growthPctNum} className="text-xs">
+              <Delta value={growthPctNum} className="text-caption">
                 <DeltaIcon />
                 <DeltaValue />
               </Delta>
             </div>
-            <p className="mt-1 text-xl font-medium tabular-nums">
+            <p className="mt-1 text-metric tabular-nums">
               {totalSales.toLocaleString("en-US")}
             </p>
             <CardDescription className="mt-1">

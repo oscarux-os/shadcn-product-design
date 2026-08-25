@@ -70,9 +70,10 @@ pre-commit or CI step.
   `destructive`.
 
 **Type**
-- **Use the role utilities, not raw sizes.** `text-metric` / `text-title` /
-  `text-body` / `text-label` / `text-caption` / `text-code` — defined in
-  `app/globals.css`. Reach for `text-sm` or `text-xs` only if no role fits, and
+- **Use the role utilities, not raw sizes.** `text-page-title` / `text-metric` /
+  `text-title` / `text-body` / `text-label` / `text-label-sm` / `text-caption` /
+  `text-code` — defined in `app/globals.css`. A view's h1 is `text-page-title`;
+  `text-metric` is for figures. Reach for `text-sm` or `text-xs` only if no role fits, and
   then say so, because that's a gap in the scale.
 - **A role carries its line-height and weight.** `text-label` is already 500 —
   don't add `font-medium` next to it, and don't add `leading-*`. If you're
@@ -187,6 +188,7 @@ file to reflect it, and remove the highlight.
 | Drift check | `pnpm gen:tokens:check` | Non-zero exit on drift |
 | Utility mapping | `app/globals.css` | `@theme` blocks, radius ladder, shadow stack |
 | Type utilities | `app/globals.css` | `text-metric` … `text-code` — size + leading + weight in one |
+| 12px roles | `app/globals.css` | `text-label-sm` (500) for chrome, `text-caption` (400) for metadata |
 | Motion utilities | `app/globals.css` | `duration-instant` / `duration-base`, `ease-default` |
 | Type | `DESIGN.md` → `typography` | 6 roles, 2 weights, numbers are the largest type |
 | Layout | `DESIGN.md` → `layout` | Sidebar shell, fluid content, no page grid |

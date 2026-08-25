@@ -152,7 +152,7 @@ const money = (n: number) =>
 export function Orders() {
   return (
     <div className="flex flex-1 flex-col gap-6">
-      <h1 className="text-xl leading-tight font-medium">All orders</h1>
+      <h1 className="text-page-title">All orders</h1>
 
       <BentoPanel>
         <BentoRow>
@@ -204,13 +204,13 @@ export function Orders() {
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar className="size-6 after:hidden">
-                      <AvatarFallback className="text-xs">
+                      <AvatarFallback className="text-caption">
                         {initials(o.name)}
                       </AvatarFallback>
                     </Avatar>
                     <div className="leading-tight">
                       <div className="font-medium">{o.name}</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-caption text-muted-foreground">
                         {o.email}
                       </div>
                     </div>

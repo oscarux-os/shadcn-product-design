@@ -16,8 +16,8 @@ export function ShowcaseIndex() {
   return (
     <div className="flex flex-1 flex-col gap-6">
       <div className="flex flex-col gap-1">
-        <h1 className="text-xl leading-tight font-medium">Components</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="text-page-title">Components</h1>
+        <p className="text-body text-muted-foreground">
           The shared building blocks used across the app, on the OKLCH design
           system.
         </p>
@@ -29,9 +29,9 @@ export function ShowcaseIndex() {
             <Card className="h-full gap-4 transition-transform group-hover:-translate-y-0.5">
               <CardHeader>
                 <div className="flex items-center justify-between gap-2">
-                  <CardTitle className="text-base">{e.name}</CardTitle>
+                  <CardTitle>{e.name}</CardTitle>
                   <Badge
-                    className="text-xs tracking-wide uppercase"
+                    className="tracking-wide uppercase"
                     variant="outline"
                   >
                     {e.tag}
@@ -47,11 +47,11 @@ export function ShowcaseIndex() {
                 </div>
                 {usedIn[e.slug]?.length ? (
                   <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-caption text-muted-foreground">
                       Used in
                     </span>
                     {usedIn[e.slug].map((u) => (
-                      <Badge className="text-xs" key={u} variant="secondary">
+                      <Badge key={u} variant="secondary">
                         {u}
                       </Badge>
                     ))}

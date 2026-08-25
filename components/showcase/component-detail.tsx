@@ -49,17 +49,17 @@ export function ComponentDetail({ slug }: { slug: string }) {
           </Link>
         </Button>
         <div className="flex items-center gap-2">
-          <h1 className="text-xl leading-tight font-medium">{entry.name}</h1>
-          <Badge className="text-xs tracking-wide uppercase" variant="outline">
+          <h1 className="text-page-title">{entry.name}</h1>
+          <Badge className="tracking-wide uppercase" variant="outline">
             {entry.tag}
           </Badge>
         </div>
-        <p className="max-w-2xl text-sm text-muted-foreground">
+        <p className="max-w-2xl text-body text-muted-foreground">
           {entry.description}
         </p>
         {usedIn[entry.slug]?.length ? (
           <div className="mt-1 flex flex-wrap items-center gap-2">
-            <span className="text-sm text-muted-foreground">Used in</span>
+            <span className="text-body text-muted-foreground">Used in</span>
             {usedIn[entry.slug].map((u) => {
               const href = usedInHref(u)
               return href ? (
@@ -80,7 +80,7 @@ export function ComponentDetail({ slug }: { slug: string }) {
         {entry.examples.map((ex, i) => (
           <Card key={i}>
             <CardHeader>
-              <CardTitle className="text-xs font-normal tracking-wide text-muted-foreground">
+              <CardTitle className="text-caption tracking-wide text-muted-foreground">
                 {ex.title}
               </CardTitle>
             </CardHeader>
