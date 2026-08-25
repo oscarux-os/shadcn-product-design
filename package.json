@@ -7,6 +7,8 @@
     "dev": "next dev",
     "gen:tokens": "node --experimental-strip-types scripts/generate-tokens.ts",
     "gen:tokens:check": "node --experimental-strip-types scripts/generate-tokens.ts --check",
+    "lint:design": "node --experimental-strip-types scripts/lint-design.ts",
+    "check": "npm run typecheck && npm run gen:tokens:check && npm run lint:design",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

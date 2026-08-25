@@ -52,8 +52,32 @@ Change the colour MATHS →  edit lib/palette/engine.ts  →  pnpm gen:tokens
 - `app/tokens.css`
 - the block between the `>>> GENERATED` / `<<< END GENERATED` markers in `DESIGN.md`
 
-`pnpm gen:tokens:check` exits non-zero when either has drifted. Use it as a
-pre-commit or CI step.
+`pnpm gen:tokens:check` exits non-zero when either has drifted.
+
+---
+
+## The gate
+
+**`pnpm check`** runs `typecheck`, `gen:tokens:check` and `lint:design`. Run it
+before you call anything done, and put it in a pre-commit hook or CI step.
+
+`pnpm lint:design` enforces the rules below that can be checked mechanically:
+arbitrary font sizes, weights outside the two-weight scale, raw size classes
+where a role exists, a role paired with a hand-set weight, raw transition
+durations, and hardcoded colour in components. Its scope is deliberately narrow
+— typography, motion and colour — because a gate that fails on unrelated
+pre-existing code gets switched off.
+
+An exception is allowed, but it has to be stated on the offending line or the one
+directly above it, with a reason:
+
+```
+// design-lint-allow: raw-size — iOS Safari zooms the viewport on focus below 16px
+```
+
+There is exactly one today (`components/ui/input.tsx`). If you need a second,
+that is worth a conversation — it usually means the scale has a gap, which is a
+change to `DESIGN.md`, not a comment.
 
 ---
 
@@ -186,6 +210,8 @@ file to reflect it, and remove the highlight.
 | Colour maths | `lib/palette/engine.ts` | Quadratic L, skewed-gaussian C, per-hue caps |
 | Generated CSS | `app/tokens.css` | Never hand-edit — `pnpm gen:tokens` |
 | Drift check | `pnpm gen:tokens:check` | Non-zero exit on drift |
+| The gate | `pnpm check` | typecheck + token drift + design rules |
+| Design rules | `scripts/lint-design.ts` | Six mechanical rules, stated exceptions only |
 | Utility mapping | `app/globals.css` | `@theme` blocks, radius ladder, shadow stack |
 | Type utilities | `app/globals.css` | `text-metric` … `text-code` — size + leading + weight in one |
 | 12px roles | `app/globals.css` | `text-label-sm` (500) for chrome, `text-caption` (400) for metadata |
