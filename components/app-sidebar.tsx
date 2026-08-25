@@ -1,6 +1,5 @@
 "use client"
 
-import { LogoIcon } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import {
   Sidebar,
@@ -22,8 +21,11 @@ export function AppSidebar() {
       <SidebarHeader className="h-14 justify-center">
         <SidebarMenuButton asChild>
           <a href="#link">
-            <LogoIcon />
-            <span className="font-medium">Efferd</span>
+            <span
+              aria-hidden="true"
+              className="size-4 shrink-0 rounded-sm border border-dashed border-sidebar-border bg-muted"
+            />
+            <span className="text-label text-muted-foreground">Company name</span>
           </a>
         </SidebarMenuButton>
       </SidebarHeader>
