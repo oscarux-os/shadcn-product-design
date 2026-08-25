@@ -41,7 +41,7 @@ export function ComponentDetail({ slug }: { slug: string }) {
 				</Button>
 				<div className="flex items-center gap-2">
 					<h1 className="font-medium text-xl leading-tight">{entry.name}</h1>
-					<Badge className="text-[10px] uppercase tracking-wide" variant="outline">
+					<Badge className="text-xs uppercase tracking-wide" variant="outline">
 						{entry.tag}
 					</Badge>
 				</div>

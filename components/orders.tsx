@@ -112,7 +112,7 @@ export function Orders() {
 								<TableCell>
 									<div className="flex items-center gap-3">
 										<Avatar className="size-6 after:hidden">
-											<AvatarFallback className="text-[10px]">
+											<AvatarFallback className="text-xs">
 												{initials(o.name)}
 											</AvatarFallback>
 										</Avatar>

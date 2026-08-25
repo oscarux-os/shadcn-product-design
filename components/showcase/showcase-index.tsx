@@ -29,7 +29,7 @@ export function ShowcaseIndex() {
 							<CardHeader>
 								<div className="flex items-center justify-between gap-2">
 									<CardTitle className="text-base">{e.name}</CardTitle>
-									<Badge className="text-[10px] uppercase tracking-wide" variant="outline">
+									<Badge className="text-xs uppercase tracking-wide" variant="outline">
 										{e.tag}
 									</Badge>
 								</div>
@@ -43,7 +43,7 @@ export function ShowcaseIndex() {
 									<div className="flex flex-wrap items-center gap-1.5">
 										<span className="text-muted-foreground text-xs">Used in</span>
 										{usedIn[e.slug].map((u) => (
-											<Badge className="text-[10px]" key={u} variant="secondary">
+											<Badge className="text-xs" key={u} variant="secondary">
 												{u}
 											</Badge>
 										))}

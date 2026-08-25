@@ -179,7 +179,7 @@ export const showcase: ShowcaseEntry[] = [
 		preview: (
 			<div className="flex items-center gap-2">
 				<Avatar className="after:hidden"><AvatarFallback>AL</AvatarFallback></Avatar>
-				<Avatar className="size-6 after:hidden"><AvatarFallback className="text-[10px]">YT</AvatarFallback></Avatar>
+				<Avatar className="size-6 after:hidden"><AvatarFallback className="text-xs">YT</AvatarFallback></Avatar>
 			</div>
 		),
 		examples: [
@@ -187,7 +187,7 @@ export const showcase: ShowcaseEntry[] = [
 				title: "Sizes",
 				node: (
 					<div className="flex items-center gap-3">
-						<Avatar className="size-6 after:hidden"><AvatarFallback className="text-[10px]">SM</AvatarFallback></Avatar>
+						<Avatar className="size-6 after:hidden"><AvatarFallback className="text-xs">SM</AvatarFallback></Avatar>
 						<Avatar className="after:hidden"><AvatarFallback>MD</AvatarFallback></Avatar>
 						<Avatar className="size-10 after:hidden"><AvatarFallback>LG</AvatarFallback></Avatar>
 					</div>
