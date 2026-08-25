@@ -70,6 +70,13 @@ pre-commit or CI step.
   `destructive`.
 
 **Type**
+- **Use the role utilities, not raw sizes.** `text-metric` / `text-title` /
+  `text-body` / `text-label` / `text-caption` / `text-code` — defined in
+  `app/globals.css`. Reach for `text-sm` or `text-xs` only if no role fits, and
+  then say so, because that's a gap in the scale.
+- **A role carries its line-height and weight.** `text-label` is already 500 —
+  don't add `font-medium` next to it, and don't add `leading-*`. If you're
+  pairing a size with a weight by hand, you're rebuilding a role.
 - **Two weights only — 400 and 500.** More emphasis means a different colour or a
   different surface, never a heavier or larger font.
 - **`metric` (1.25rem) is the ceiling, and it's for numbers.** There is no display
@@ -103,7 +110,9 @@ pre-commit or CI step.
 - **`destructive` is tonal, not solid.** A destructive action asks; it doesn't shout.
 - **Never remove a focus outline** without a visible replacement. Every
   interactive element shows the `focus-ring` on `:focus-visible`.
-- **Motion stays under 250ms.** `ease-linear` for width/position/margin,
+- **Motion stays under 250ms.** Use `duration-instant` (100ms) and
+  `duration-base` (200ms) — custom utilities in `app/globals.css`, not raw
+  `duration-100` / `duration-200`. `ease-linear` for width/position/margin,
   `ease-default` for colour/opacity/transform. Honour `prefers-reduced-motion`.
 
 **Components**
@@ -176,7 +185,9 @@ file to reflect it, and remove the highlight.
 | Colour maths | `lib/palette/engine.ts` | Quadratic L, skewed-gaussian C, per-hue caps |
 | Generated CSS | `app/tokens.css` | Never hand-edit — `pnpm gen:tokens` |
 | Drift check | `pnpm gen:tokens:check` | Non-zero exit on drift |
-| Utility mapping | `app/globals.css` | `@theme inline`, radius ladder, shadow stack |
+| Utility mapping | `app/globals.css` | `@theme` blocks, radius ladder, shadow stack |
+| Type utilities | `app/globals.css` | `text-metric` … `text-code` — size + leading + weight in one |
+| Motion utilities | `app/globals.css` | `duration-instant` / `duration-base`, `ease-default` |
 | Type | `DESIGN.md` → `typography` | 6 roles, 2 weights, numbers are the largest type |
 | Layout | `DESIGN.md` → `layout` | Sidebar shell, fluid content, no page grid |
 | Density | `DESIGN.md` → `density` | Table rows, cell padding, badge height |

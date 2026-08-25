@@ -71,6 +71,60 @@
       0 4px 20px -12px oklch(0 0 0 / 0.07);
 }
 
+/* ---------------------------------------------------------------------------
+   TYPOGRAPHY ROLES — see DESIGN.md → typography.
+
+   Six roles, two weights, one family. Size, line-height and weight travel
+   together: `text-body` is the whole decision, not a size you then pair with a
+   leading and a weight by hand. Deliberately NOT `@theme inline`, so the custom
+   properties are emitted and readable as var(--text-caption) in raw CSS.
+
+   `metric` is the ceiling and it is for numbers — there is no display tier.
+   Emphasis comes from weight (400 vs 500) and colour, never from a size jump.
+   --------------------------------------------------------------------------- */
+@theme {
+  --text-metric: 1.25rem;
+  --text-metric--line-height: 1.75rem;
+  --text-metric--font-weight: 500;
+
+  --text-title: 1rem;
+  --text-title--line-height: 1.5rem;
+  --text-title--font-weight: 500;
+
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.25rem;
+  --text-body--font-weight: 400;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.25rem;
+  --text-label--font-weight: 500;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-caption--font-weight: 400;
+
+  --text-code: 0.75rem;
+  --text-code--line-height: 1rem;
+  --text-code--font-weight: 400;
+
+  /* The system's standard curve. Same value as Tailwind's `ease-in-out`, kept
+     under its own name because the name is the intent: colour, opacity and
+     transform use this; width, position and margin use `ease-linear`, since a
+     curve on a layout transition reads as lag. */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Durations. Tailwind v4 has no `--duration-*` theme namespace — only
+   `--default-transition-duration` — so the two named steps are custom
+   utilities. Instant first: 250ms is a hard ceiling, and a dashboard that
+   animates feels slow. See DESIGN.md → motion. */
+@utility duration-instant {
+  transition-duration: 100ms;   /* hover/active colour changes */
+}
+@utility duration-base {
+  transition-duration: 200ms;   /* enter/exit, sidebar collapse, disclosure */
+}
+
 /* The :root and .dark token blocks now live in ./tokens.css, generated from
    lib/palette/engine.ts. Edit the engine and run `pnpm gen:tokens`. */
 
